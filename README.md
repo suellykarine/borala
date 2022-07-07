@@ -1,4 +1,4 @@
-## Planejamento Capstone  - boralá.
+# Projeto em grupo  - boralá.
 
 
 Qual o problema a ser solucionado ?
