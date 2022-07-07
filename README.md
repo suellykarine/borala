@@ -14,7 +14,9 @@ A aplicação em questão tem como intuito permitir que usuários e donos de est
 Links
 
 Link do projeto: https://capstone-m3-grupo3-vilson-nov21-ten.vercel.app/
+
 Link da API: https://capstone-m3-borala.herokuapp.com/
+
 Figma: https://www.figma.com/file/ul5WUr069hYHAqc6grs8r3/Untitled?node-id=0%3A1
 
 
@@ -25,3 +27,6 @@ Rafael Francisco Halquema dos Santos - PO
 Lucas Corrêa - QA
 Suélly Karine Silva Araujo - QA
 Vinicius Nunes - QA
+
+
+ReactJs | JS | CSS
