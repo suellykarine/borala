@@ -11,50 +11,6 @@ Qual a solução que a aplicação traz ?
 A aplicação em questão tem como intuito permitir que usuários e donos de estabelecimentos consigam, tanto visualizar eventos, como divulgar os mesmos, promovendo-os de maneira prática e fácil,além disso, conseguirão realizar filtros nas buscas. As postagens com relação aos eventos estarão explicitamente datadas e explicadas sobre como e onde irão ocorrer e quais são os tipos de atrações. Centralizando as informações e promovendo um contato mais fácil, tanto entre o usuário, quanto pelo divulgador do acontecimento, seja ele cultural, social ou artístico.
 
 
-Quais as features da aplicação que foram planejadas?
-
-
-Endpoints da API
-Estabelecimentos(cadastro, edição, leitura e deleção)
-Eventos (cadastro, edição, leitura e deleção)
-
-
-Features do Front
-Página de cadastro/login(estabelecimento)
-Página do feed
-Página de cadastro ou atualização do evento
-
-
-Filtros da página de Feed
-Filtro de cidade
-Filtro de nome ou tipo
-
-
-
-
-
-Quais as bibliotecas que serão utilizadas pela equipe ?
-
-Hook-forms
-Yup
-React-router-dom
-Styled-components
-React-icons
-Toastify
-Axios
-Jwt-decode
-@hookform/resolvers
-
-
-Quais ferramentas serão utilizadas ? (Ex: Trello, Notion, JSON Server, etc.)
-
-Trello
-JSON Server
-Vercel
-
-
-Nível estimado de complexidade: 7/10
-
 Links
 
 Link do projeto: https://capstone-m3-grupo3-vilson-nov21-ten.vercel.app/
