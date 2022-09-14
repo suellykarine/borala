@@ -20,7 +20,7 @@ Link da API: https://capstone-m3-borala.herokuapp.com/
 Figma: https://www.figma.com/file/ul5WUr069hYHAqc6grs8r3/Untitled?node-id=0%3A1
 
 
-Equipe de desenvolvimento - 
+Equipe de desenvolvimento Front-End - 
 Pedro Yvo Lucas - TL
 William Hans - SM
 Rafael Francisco Halquema dos Santos - PO
