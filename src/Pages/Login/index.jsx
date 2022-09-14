@@ -1,27 +1,26 @@
-import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useForm } from "react-hook-form";
 import { useState } from "react";
-import { useHistory } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { Link, useHistory } from "react-router-dom";
+import * as yup from "yup";
+import BoraLaLogo from "../../assets/boralalogo.png";
+import Button from "../../components/Button";
 import { useAuthenticated } from "../../Providers/authenticated";
 import "./style";
-import Button from "../../components/Button";
-import BoraLaLogo from "../../assets/boralalogo.png";
-import "./style.js";
 import {
-  Container,
-  Background,
-  Content,
-  AnimationContainer,
-  Inputs,
-  InputsP,
-  Error,
-  ButtonLogin,
   AiEye,
   AiEyeInvisible,
+  AnimationContainer,
+  Background,
+  ButtonLogin,
+  Container,
+  Content,
+  Error,
   ErrorSpan,
+  Inputs,
+  InputsP,
 } from "./style";
+import "./style.js";
 
 const Login = () => {
   const [visible, setVisible] = useState(true);

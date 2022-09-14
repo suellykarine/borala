@@ -57,13 +57,17 @@ export const Form = styled.form`
   > button {
     display: block;
     margin: 20px auto 0 auto;
-  }
+    &:hover{
+      background-color: var(--orange);
+    }
+    }
 `;
 
 export const FormContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 10px;
   @media (min-width: 764px) {
     justify-content: center;
     align-items: flex-start;
@@ -75,10 +79,7 @@ export const DivForm = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  &:nth-child(odd) {
-    margin-right: 10px;
-  }
-`;
+  `;
 
 export const Select = styled.select`
   background: var(--white);

@@ -2,25 +2,25 @@ import { useState } from "react";
 import * as S from "./style";
 
 import { useEffect } from "react";
-import { useEvent } from "../../Providers/event";
-import {
-  Logo,
-  SpanMeusEventos,
-  ImgEvent,
-  UL,
-  DivContainer,
-  EditButton,
-  RemoveButton,
-  ModalMaterial,
-  ConfirmModal,
-  ModalTitle,
-  ModalLock,
-  ModalBody,
-  YesButton,
-  NoButton,
-} from "./style";
 import { Link } from "react-router-dom";
 import LogoImg from "../../assets/boralalogo.png";
+import { useEvent } from "../../Providers/event";
+import {
+  ConfirmModal,
+  DivContainer,
+  EditButton,
+  ImgEvent,
+  Logo,
+  ModalBody,
+  ModalLock,
+  ModalMaterial,
+  ModalTitle,
+  NoButton,
+  RemoveButton,
+  SpanMeusEventos,
+  UL,
+  YesButton,
+} from "./style";
 
 const MyEvents = () => {
   const { eventList, editEvent, removeEvent } = useEvent();
