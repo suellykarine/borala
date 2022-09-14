@@ -33,7 +33,9 @@ const Login = () => {
 
   const history = useHistory();
 
-  const formSchema = yup.object().shape({});
+  const formSchema = yup.object().shape({
+    username: yup.string().max(50, "")
+  });
   const {
     register,
     handleSubmit,
@@ -61,9 +63,9 @@ const Login = () => {
                 Você não é uma empresa <img src={BoraLaLogo} alt="borala"></img>{" "}
                 ? Entre na <Link to="/">Home</Link>
               </p>
-              <Inputs type="text" placeholder="EMAIL" {...register("email")} />
+              <Inputs type="text" placeholder="LOGIN" {...register("username")} />
 
-              {errors.email && <ErrorSpan>{errors.email.message}</ErrorSpan>}
+              {errors.username && <ErrorSpan>{errors.username.message}</ErrorSpan>}
               <InputsP
                 type={visible ? "password" : "text"}
                 placeholder="SENHA"

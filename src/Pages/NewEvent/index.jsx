@@ -31,29 +31,34 @@ const NewEvent = ({ isEditting }) => {
   const formSchema = yup.object().shape({
     name: yup.string().required("Nome é obrigatório"),
     date: yup.string().required("Informe a data do evento"),
-    city: yup.string().required("Nome é obrigatório"),
-    imgUrl: yup.string().required("Insira a url da imagem do evento"),
-    eventPage: yup.string().required("Informe o link para o evento"),
-    state: yup.string().required("Selecione um estado"),
-    category: yup.string().required("Selecione uma categoria"),
-    price: yup.string().required("Informe um valor"),
+    image_url: yup.string().required("Insira a url da imagem do evento"),
+    site_url: yup.string().required("Informe o link para o evento"),
+    price: yup.number().required("Informe um valor"),
+    category: yup.object().shape({
+      name: yup.string().required("Selecione uma categoria"),
+    }),
+    address: yup.object().shape({
+      city: yup.string().required("Nome é obrigatório"),
+      state: yup.string().required("Selecione um estado"),
+    })
+    
   });
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({
-    resolver: yupResolver(formSchema),
-    defaultValues: isEditting && {
-      name: actualEvent.name,
-      date: actualEvent.date,
-      city: actualEvent.city,
-      imgUrl: actualEvent.imgUrl,
-      eventPage: actualEvent.eventPage,
-      state: actualEvent.state,
-      category: actualEvent.category,
-      price: actualEvent.price,
-    },
+    resolver: yupResolver(formSchema)//,
+    // defaultValues: isEditting && {
+    //   title: actualEvent.name,
+    //   date: actualEvent.date,
+    //   city: actualEvent.city,
+    //   image_url: actualEvent.imgUrl,
+    //   site_url: actualEvent.eventPage,
+    //   state: actualEvent.state,
+    //   category: actualEvent.category,
+    //   price: actualEvent.price,
+    // },
   });
 
   const onSubmitFunction = (data) => {
@@ -100,7 +105,7 @@ const NewEvent = ({ isEditting }) => {
           <DivForm>
             <Input
               placeholder={"CIDADE"}
-              register={register("city")}
+              register={register("address.city")}
               errorMsg={errors.city?.message}
             />
             {errors.city && <ErrorSpan>{errors.city.message}</ErrorSpan>}
@@ -129,7 +134,7 @@ const NewEvent = ({ isEditting }) => {
           </DivForm>
           <DivForm>
             <Select
-              {...register("category")}
+              {...register("category.name")}
               defaultValue=""
               errorMsg={errors.category?.message}
             >
@@ -146,7 +151,7 @@ const NewEvent = ({ isEditting }) => {
               <option value="Exposição">Exposição</option>
             </Select>
             <Select
-              {...register("state")}
+              {...register("address.state")}
               defaultValue=""
               errorMsg={errors.state?.message}
             >

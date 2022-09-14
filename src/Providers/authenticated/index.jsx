@@ -16,7 +16,7 @@ export const AuthenticatedProvider = ({ children }) => {
 
   const login = (data, history) => {
     api
-      .post("/login", data)
+      .post("/login/", data)
       .then((response) => {
         const { accessToken, user } = response.data;
 
@@ -28,7 +28,7 @@ export const AuthenticatedProvider = ({ children }) => {
         history.push("/");
         toast.success("Login efetuado com sucesso");
       })
-      .catch((err) => toast.error("email ou senha incorretos"));
+      .catch((err) => toast.error("Login ou senha incorretos"));
   };
 
   return (

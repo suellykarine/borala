@@ -30,6 +30,7 @@ const Signup = () => {
 
   const signupSchema = yup.object().shape({
     name: yup.string().required("Nome obrigatório!"),
+    username:yup.string().required("Login obrigatório!"),
     cnpj: yup.string().min(14, "Mínimo de 14 dígitos").required("CNPJ obrigatório!"),
     email: yup.string().email("Email inválido").required("Email obrigatório!"),
     password: yup
@@ -94,6 +95,13 @@ const Signup = () => {
                 errorMsg={errors.cnpj?.message}
               />
               {errors.cnpj && <ErrorSpan>{errors.cnpj.message}</ErrorSpan>}
+              <Input
+                register={register("username")}
+                name="username"
+                placeholder="LOGIN"
+                errorMsg={errors.username?.message}
+              />
+              {errors.username && <ErrorSpan>{errors.cnpj.message}</ErrorSpan>}
               <Input
                 register={register("email")}
                 name="email"

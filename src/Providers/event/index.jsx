@@ -1,7 +1,6 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext } from "react";
 import api from "../../service/api";
 import { toast } from "react-toastify";
-import jwt_decode from "jwt-decode";
 import { useHistory } from "react-router-dom";
 
 export const EventContext = createContext();
@@ -11,13 +10,25 @@ export const EventProvider = ({ children }) => {
   //   api.delete(`/events/${id}`)
   // };
 
-  const history = useHistory();
+  const history  = useHistory()
+
+  const formatData = (data) => {
+    const formatedData = {...data}
+
+    if (data.category){
+      formatedData.categories = [data.category]
+
+      delete formatedData.category
+    }
+
+    return formatedData
+  }
 
   const removeEvent = (id) => {
     const token = JSON.parse(localStorage.getItem("@borala:token"));
     const config = {
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Token ${token}`,
       },
     };
     api
@@ -33,18 +44,19 @@ export const EventProvider = ({ children }) => {
   };
 
   const eventRegister = (data, history) => {
+    const formatedData = formatData(data)
+
     const token = JSON.parse(localStorage.getItem("@borala:token"));
-    data.userId = Number(jwt_decode(token).sub);
     const config = {
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Token ${token}`,
       },
     };
     api
-      .post("/events/", data, config)
+      .post("/events/", formatedData, config)
       .then((response) => {
         history.push("/myEvents");
-        toast.success("Evento cadastrado!");
+        toast.success(`Evento cadastrado!`);
       })
       .catch((err) => {
         console.log(err);
@@ -59,7 +71,7 @@ export const EventProvider = ({ children }) => {
     let dataReturn = [];
     const config = {
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Token ${token}`,
       },
     };
     await api
@@ -75,15 +87,16 @@ export const EventProvider = ({ children }) => {
   };
 
   const eventUpdate = (data, history) => {
+    const formatedData = formatData(data)
+
     const token = JSON.parse(localStorage.getItem("@borala:token"));
-    data.userId = Number(jwt_decode(token).sub);
     const config = {
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Token ${token}`,
       },
     };
     api
-      .patch(`/events/${data.id}`, data, config)
+      .patch(`/events/${data.id}/`, formatedData, config)
       .then((response) => {
         history.push("/");
         toast.success("Evento atualizado!");

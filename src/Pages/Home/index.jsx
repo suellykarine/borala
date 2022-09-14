@@ -113,7 +113,7 @@ const Home = () => {
             </h2>
           </S.LocationDiv>
           <S.CardBox>
-            {filteredEvents.map((event) => (
+            {filteredEvents?.map((event) => (
               <S.CardBoxDiv key={event.id}>
                 <img
                   src={event.imgUrl}
@@ -129,7 +129,7 @@ const Home = () => {
                     state={event.state}
                   />
                 </S.cardDescription>
-                {tokenId == event.userId && (
+                {tokenId === event.userId && (
                   <S.editIcon onClick={() => editEvent(event)} />
                 )}
               </S.CardBoxDiv>
