@@ -155,7 +155,7 @@ const NewEvent = ({ isEditting }) => {
             <Select
               {...register("address.state")}
               defaultValue=""
-              errorMsg={errors.state?.message}
+              errorMsg={errors.address?.state?.message}
             >
               <option value="" disabled>
                 ESTADO
@@ -188,6 +188,7 @@ const NewEvent = ({ isEditting }) => {
               <option value="SE">Sergipe</option>
               <option value="TO">Tocantins</option>
             </Select>
+            {errors.category?.name && <ErrorSpan>{errors.category.name.message}</ErrorSpan>}
           </DivForm>
         </FormContainer>
         <Button type="submit">
