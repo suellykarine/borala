@@ -1,13 +1,12 @@
-import * as S from "./style";
-import api from "../../service/api";
-import Logo from "../../img/boralalogo.png";
+import { useEffect, useState } from "react";
 import LogoNav from "../../assets/boralanav.png";
 import LocationLogo from "../../assets/locationVector.svg";
+import CardEvent from "../../components/CardEvent";
 import { MenuDesktop } from "../../components/MenuDesktop";
 import { MenuMobile } from "../../components/MenuMobile";
-import { useState } from "react";
-import { useEffect } from "react";
-import CardEvent from "../../components/CardEvent";
+import Logo from "../../img/boralalogo.png";
+import api from "../../service/api";
+import * as S from "./style";
 
 //import jwtDecode from "jwt-decode";
 import { useEvent } from "../../Providers/event";
@@ -105,7 +104,7 @@ const Home = () => {
         <main>
           <S.NavImgDiv>
             <div>
-              O MELHOR HAPPY HOUR DO BRASIL, AQUI NO
+              OS MELHORES EVENTOS DO BRASIL,
               <img src={LogoNav} alt="logoNav"></img>
             </div>
           </S.NavImgDiv>
