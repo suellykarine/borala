@@ -9,7 +9,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import CardEvent from "../../components/CardEvent";
 
-import jwtDecode from "jwt-decode";
+//import jwtDecode from "jwt-decode";
 import { useEvent } from "../../Providers/event";
 
 const Home = () => {
@@ -21,7 +21,7 @@ const Home = () => {
 
   const token = JSON.parse(localStorage.getItem("@borala:token"));
 
-  const tokenId = token ? Number(jwtDecode(token).sub) : null;
+  //const tokenId = token ? Number(jwtDecode(token).sub) : null;
 
   const { editEvent } = useEvent();
 
@@ -59,8 +59,9 @@ const Home = () => {
     api
       .get("/events")
       .then((response) => {
-        setEvents(response.data);
-        setFilteredEvents(response.data);
+        setEvents(response.data.results);
+        setFilteredEvents(response.data.results);
+        console.log(response.data);
       })
       .catch((response) => console.log(response));
   }, []);
@@ -116,22 +117,22 @@ const Home = () => {
             {filteredEvents?.map((event) => (
               <S.CardBoxDiv key={event.id}>
                 <img
-                  src={event.imgUrl}
-                  alt={event.name}
-                  onClick={() => window.location.assign(event.eventPage)}
+                  src={event.image_url}
+                  alt={event.title}
+                  onClick={() => window.location.assign(event.site_url)}
                 />
                 <S.cardDescription>
                   <CardEvent
                     date={event.date.split("-").reverse().join("/")}
-                    address={event.address}
-                    name={event.name}
-                    city={event.city}
-                    state={event.state}
+                    //address={event.address}
+                    name={event.title}
+                    city={event.address.city}
+                    state={event.address.state}
                   />
                 </S.cardDescription>
-                {tokenId === event.userId && (
+                {/* {tokenId === event.user && (
                   <S.editIcon onClick={() => editEvent(event)} />
-                )}
+                )} */}
               </S.CardBoxDiv>
             ))}
           </S.CardBox>

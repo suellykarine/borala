@@ -55,7 +55,8 @@ export const EventProvider = ({ children }) => {
     api
       .post("/events/", formatedData, config)
       .then((response) => {
-        history.push("/myEvents");
+        console.log(response)
+        history.push("/");
         toast.success(`Evento cadastrado!`);
       })
       .catch((err) => {
@@ -66,8 +67,6 @@ export const EventProvider = ({ children }) => {
 
   const eventList = async () => {
     const token = JSON.parse(localStorage.getItem("@borala:token"));
-
-    const userId = JSON.parse(localStorage.getItem("@borala:userId"));
     let dataReturn = [];
     const config = {
       headers: {
@@ -75,7 +74,7 @@ export const EventProvider = ({ children }) => {
       },
     };
     await api
-      .get(`/events?userId=${userId}`, config)
+      .get(`/events/`, config)
       .then((response) => {
         dataReturn = response.data;
       })

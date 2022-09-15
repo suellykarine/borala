@@ -18,11 +18,11 @@ export const AuthenticatedProvider = ({ children }) => {
     api
       .post("/login/", data)
       .then((response) => {
-        const { accessToken, user } = response.data;
+        console.log(response)
+        const { token } = response.data;
 
-        localStorage.setItem("@borala:token", JSON.stringify(accessToken));
-        localStorage.setItem("@borala:userId", JSON.stringify(user.id));
-
+        localStorage.setItem("@borala:token", JSON.stringify(token));
+        
         setAuthenticated(true);
 
         history.push("/");

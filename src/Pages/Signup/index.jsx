@@ -29,7 +29,7 @@ const Signup = () => {
   };
 
   const signupSchema = yup.object().shape({
-    name: yup.string().required("Nome obrigatório!"),
+    first_name: yup.string().required("Nome obrigatório!"),
     username:yup.string().required("Login obrigatório!"),
     cnpj: yup.string().min(14, "Mínimo de 14 dígitos").required("CNPJ obrigatório!"),
     email: yup.string().email("Email inválido").required("Email obrigatório!"),
@@ -56,10 +56,11 @@ const Signup = () => {
 
   const history = useHistory();
 
-  const onSubmitFunction = ({ name, cnpj, email, password }) => {
-    const user = { name, cnpj, email, password };
+  const onSubmitFunction = ({ username, cnpj, email, password, first_name }) => {
+    const user = { username, first_name, cnpj, email, password, last_name:"empresa", is_promoter:true };
+    console.log(user)
     api
-      .post("/register", user)
+      .post("/register/", user)
       .then((_) => {
         toast.success("Conta criada com sucesso! ");
         return history.push("/login");
@@ -82,12 +83,12 @@ const Signup = () => {
             </p>
             <DivInputs>
               <Input
-                register={register("name")}
-                name="name"
+                register={register("first_name")}
+                name="first_name"
                 placeholder="NOME DA EMPRESA"
-                errorMsg={errors.name?.message}
+                errorMsg={errors.first_name?.message}
               />
-              {errors.name && <ErrorSpan>{errors.name.message}</ErrorSpan>}
+              {errors.first_name && <ErrorSpan>{errors.first_name.message}</ErrorSpan>}
               <Input
                 register={register("cnpj")}
                 name="cnpj"
@@ -101,7 +102,7 @@ const Signup = () => {
                 placeholder="LOGIN"
                 errorMsg={errors.username?.message}
               />
-              {errors.username && <ErrorSpan>{errors.cnpj.message}</ErrorSpan>}
+              {errors.username && <ErrorSpan>{errors.username.message}</ErrorSpan>}
               <Input
                 register={register("email")}
                 name="email"

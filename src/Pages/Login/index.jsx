@@ -34,7 +34,8 @@ const Login = () => {
   const history = useHistory();
 
   const formSchema = yup.object().shape({
-    username: yup.string().max(50, "")
+    username: yup.string().required(),
+    password: yup.string().required()
   });
   const {
     register,
@@ -45,6 +46,7 @@ const Login = () => {
   });
 
   const handleLogin = (data) => {
+    console.log(data)
     login(data, history);
   };
 
