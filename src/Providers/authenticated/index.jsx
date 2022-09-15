@@ -14,21 +14,30 @@ export const AuthenticatedProvider = ({ children }) => {
     }
   }, [authenticated]);
 
-  const login = (data, history) => {
-    api
-      .post("/login/", data)
-      .then((response) => {
-        console.log(response)
-        const { token } = response.data;
+  const login = async (data, history) => {
+    
+    try{
+      const loginResponse   = await api.post("/login/", data)
+      const profileResponse = await api.get("/profile/", {
+        headers: {
+          Authorization: `Token ${loginResponse.data.token}` 
+        }
+      });
 
-        localStorage.setItem("@borala:token", JSON.stringify(token));
-        
-        setAuthenticated(true);
+      const { token } = loginResponse.data;
+      const { id    } = profileResponse.data;
 
-        history.push("/");
-        toast.success("Login efetuado com sucesso");
-      })
-      .catch((err) => toast.error("Login ou senha incorretos"));
+      localStorage.setItem("@borala:token", JSON.stringify(token));
+      localStorage.setItem("@borala:userId", JSON.stringify(id));
+      
+      setAuthenticated(true);
+
+      history.push("/");
+      toast.success("Login efetuado com sucesso");
+    }
+    catch(err){
+      toast.error("Login ou senha incorretos")
+    }
   };
 
   return (

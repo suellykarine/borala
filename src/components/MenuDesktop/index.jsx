@@ -17,7 +17,7 @@ export const MenuDesktop = ({ setCurrentState, setCurrentInput }) => {
           <option value="" disabled>
             ESTADO
           </option>
-          <option value="Selecione seu Estado">TODOS</option>
+          <option value="">TODOS</option>
           <option value="AC">AC</option>
           <option value="AL">AL</option>
           <option value="AP">AP</option>

@@ -13,15 +13,12 @@ import CardEvent from "../../components/CardEvent";
 import { useEvent } from "../../Providers/event";
 
 const Home = () => {
-  const [currentState, setCurrentState] = useState("Selecione seu Estado");
+  const [currentState, setCurrentState] = useState("");
   const [currentInput, setCurrentInput] = useState("");
 
   const [filteredEvents, setFilteredEvents] = useState([]);
-  const [events, setEvents] = useState([]);
 
-  const token = JSON.parse(localStorage.getItem("@borala:token"));
-
-  //const tokenId = token ? Number(jwtDecode(token).sub) : null;
+  const tokenId = JSON.parse(localStorage.getItem("@borala:userId"));
 
   const { editEvent } = useEvent();
 
@@ -55,31 +52,38 @@ const Home = () => {
     TO: "Tocantins",
   };
 
-  useEffect(() => {
-    api
-      .get("/events")
-      .then((response) => {
-        setEvents(response.data.results);
-        setFilteredEvents(response.data.results);
-        console.log(response.data);
-      })
-      .catch((response) => console.log(response));
-  }, []);
+  const getClosestEvents = async () => {
+    const response    = await api.get("/events/closest/")
+    const eventsArray = response.data.results
+
+    setFilteredEvents(eventsArray)
+  }
+
+  const getFilteredEvents = async () => {
+    const titleFilter   = await api.get(`/events?title=${currentInput}&state=${currentState}`)
+    const cityFilter    = await api.get(`/events?city=${currentInput}&state=${currentState}`)
+
+    console.log(cityFilter.data.results, titleFilter.data.results)
+
+    const filteredArray = [
+      ...titleFilter.data.results, 
+      ...cityFilter.data.results
+    ]
+
+    const filteredHash  = {}
+
+    filteredArray.forEach((event) => filteredHash[event.id]=event)
+
+    setFilteredEvents(Object.values(filteredHash))
+  }
 
   useEffect(() => {
-    setFilteredEvents(
-      events
-        .filter(
-          (event) =>
-            event.city.toUpperCase().includes(currentInput.toUpperCase()) ||
-            event.name.toUpperCase().includes(currentInput.toUpperCase())
-        )
-        .filter((eventState) =>
-          currentState !== "Selecione seu Estado"
-            ? eventState.state === currentState
-            : true
-        )
-    );
+    const getEvents = currentState || currentInput 
+      ? getFilteredEvents
+      : getClosestEvents
+    
+    getEvents()
+    
   }, [currentState, currentInput]);
 
   return (
@@ -108,7 +112,7 @@ const Home = () => {
           <S.LocationDiv>
             <img src={LocationLogo} alt="location"></img>
             <h2>
-              {currentState !== "Selecione seu Estado"
+              {currentState
                 ? states[currentState]
                 : "Selecione seu Estado"}
             </h2>
@@ -130,9 +134,9 @@ const Home = () => {
                     state={event.address.state}
                   />
                 </S.cardDescription>
-                {/* {tokenId === event.user && (
+                {tokenId === event.user_id && (
                   <S.editIcon onClick={() => editEvent(event)} />
-                )} */}
+                )}
               </S.CardBoxDiv>
             ))}
           </S.CardBox>
