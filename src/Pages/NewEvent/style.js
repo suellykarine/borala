@@ -56,14 +56,18 @@ export const Cover = styled.div`
 export const Form = styled.form`
   > button {
     display: block;
-    margin: 20px auto 0 auto;
-  }
+    margin: 30px auto 30px auto;
+    &:hover{
+      background-color: var(--orange);
+    }
+    }
 `;
 
 export const FormContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 10px;
   @media (min-width: 764px) {
     justify-content: center;
     align-items: flex-start;
@@ -75,10 +79,7 @@ export const DivForm = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  &:nth-child(odd) {
-    margin-right: 10px;
-  }
-`;
+  `;
 
 export const Select = styled.select`
   background: var(--white);
@@ -87,7 +88,7 @@ export const Select = styled.select`
     props.errorMsg ? "2px solid var(--orange)" : "2px solid var(--darkblue)"};
   padding: 0.5rem 1rem;
   height: 52px;
-  width: 80%;
+  width: 50%;
   transition: 0.4s;
   margin-top: 25px;
 
@@ -95,7 +96,7 @@ export const Select = styled.select`
   font-size: 1rem;
 
   @media (min-width: 764px) {
-    width: 338px;
+    width: 264px;
     margin-top: 20px;
   }
 `;

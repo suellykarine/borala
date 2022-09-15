@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Container = styled.div `
+export const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -11,7 +11,7 @@ export const Container = styled.div `
   }
 `
 
-export const Header = styled.div `
+export const Header = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -29,12 +29,12 @@ export const Header = styled.div `
   }
 `
 
-export const divImg = styled.div `
+export const divImg = styled.div`
   margin-bottom: 30px;
   max-height: 40vh;
 `
 
-export const cardOne = styled.div `
+export const cardOne = styled.div`
   width: 50%;
   display: flex;
   flex-direction: column;
@@ -53,7 +53,7 @@ export const cardOne = styled.div `
   }
 `
 
-export const cardOneFirstSon = styled.div `
+export const cardOneFirstSon = styled.div`
   display: flex;
   flex-direction: row;
   margin-bottom: 20px;
@@ -81,14 +81,14 @@ export const cardOneFirstSon = styled.div `
   }
 `
 
-export const cardOneSecondSon = styled.div `
+export const cardOneSecondSon = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   margin-left: 15px;
 `
 
-export const cardDescription = styled.div `
+export const cardDescription = styled.div`
   h3 {
     color: var(--darkblue);
     font-size: 12px;
@@ -117,10 +117,16 @@ export const cardDescription = styled.div `
   }
 `
 
-export const cardOneThirdSon = styled.div `
+export const cardOneThirdSon = styled.div`
   display: flex;
   
   a {
     margin-right: 3px;
   }
 `
+export const categoria = styled.h1`
+text-align: center;
+width: 100%;
+font-size: 36px;
+margin-top: 35px;
+`;

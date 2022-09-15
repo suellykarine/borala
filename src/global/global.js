@@ -19,7 +19,7 @@ export default createGlobalStyle`
     body {
         background: var(--white);
         color: var(--darkblue);
-        height: 100vh;
+        height: 100%;
     }
     body, input, button {
         font-family: 'Nunito', sans-serif;

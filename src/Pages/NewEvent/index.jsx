@@ -1,26 +1,25 @@
-import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Redirect, useHistory } from "react-router-dom";
-import { useForm } from "react-hook-form";
 import { useContext } from "react";
+import { useForm } from "react-hook-form";
+import { Link, Redirect, useHistory } from "react-router-dom";
+import * as yup from "yup";
 import { EventContext } from "../../Providers/event";
-import { Link } from "react-router-dom";
 
-import {
-  Header,
-  Logo,
-  SpanNovoEvento,
-  Cover,
-  FormContainer,
-  DivForm,
-  Select,
-  Form,
-  ErrorSpan,
-  ImgEvent,
-} from "./style";
 import LogoImg from "../../assets/boralalogo.png";
-import Input from "../../components/Input";
 import Button from "../../components/Button";
+import Input from "../../components/Input";
+import {
+  Cover,
+  DivForm,
+  ErrorSpan,
+  Form,
+  FormContainer,
+  Header,
+  ImgEvent,
+  Logo,
+  Select,
+  SpanNovoEvento,
+} from "./style";
 
 const NewEvent = ({ isEditting }) => {
   const { eventRegister, eventUpdate } = useContext(EventContext);
@@ -36,6 +35,8 @@ const NewEvent = ({ isEditting }) => {
     imgUrl: yup.string().required("Insira a url da imagem do evento"),
     eventPage: yup.string().required("Informe o link para o evento"),
     state: yup.string().required("Selecione um estado"),
+    category: yup.string().required("Selecione uma categoria"),
+    price: yup.string().required("Informe um valor"),
   });
   const {
     register,
@@ -50,6 +51,8 @@ const NewEvent = ({ isEditting }) => {
       imgUrl: actualEvent.imgUrl,
       eventPage: actualEvent.eventPage,
       state: actualEvent.state,
+      category: actualEvent.category,
+      price: actualEvent.price,
     },
   });
 
@@ -93,21 +96,22 @@ const NewEvent = ({ isEditting }) => {
               errorMsg={errors.date?.message}
             />
             {errors.date && <ErrorSpan>{errors.date.message}</ErrorSpan>}
+          </DivForm>
+          <DivForm>
             <Input
               placeholder={"CIDADE"}
               register={register("city")}
               errorMsg={errors.city?.message}
             />
             {errors.city && <ErrorSpan>{errors.city.message}</ErrorSpan>}
-          </DivForm>
-          <DivForm>
             <Input
               placeholder={"URL DA IMAGEM"}
               register={register("imgUrl")}
               errorMsg={errors.imgUrl?.message}
             />
             {errors.imgUrl && <ErrorSpan>{errors.imgUrl.message}</ErrorSpan>}
-
+          </DivForm>
+          <DivForm>
             <Input
               placeholder={"SITE DO EVENTO"}
               register={register("eventPage")}
@@ -116,7 +120,31 @@ const NewEvent = ({ isEditting }) => {
             {errors.eventPage && (
               <ErrorSpan>{errors.eventPage.message}</ErrorSpan>
             )}
-
+            <Input
+              placeholder={"VALOR"}
+              register={register("price")}
+              errorMsg={errors.price?.message}
+            />
+            {errors.price && <ErrorSpan>{errors.price.message}</ErrorSpan>}
+          </DivForm>
+          <DivForm>
+            <Select
+              {...register("category")}
+              defaultValue=""
+              errorMsg={errors.category?.message}
+            >
+              <option value="" disabled>
+                CATEGORIA
+              </option>
+              <option value="Show">Show</option>
+              <option value="Teatro">Peça Teatral</option>
+              <option value="HH">Happy Hour</option>
+              <option value="Feira">Feira</option>
+              <option value="Festa">Festa</option>
+              <option value="Tour">Tour</option>
+              <option value="Rodízio">Rodízio</option>
+              <option value="Exposição">Exposição</option>
+            </Select>
             <Select
               {...register("state")}
               defaultValue=""
@@ -153,7 +181,6 @@ const NewEvent = ({ isEditting }) => {
               <option value="SE">Sergipe</option>
               <option value="TO">Tocantins</option>
             </Select>
-            {errors.state && <ErrorSpan>{errors.state.message}</ErrorSpan>}
           </DivForm>
         </FormContainer>
         <Button type="submit">
