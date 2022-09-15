@@ -10,7 +10,7 @@ A aplicação em questão tem como intuito permitir que usuários e donos de est
 
 Links
 
-Link do projeto: https://borala.vercel.app/
+Link do projeto: https://boralafullstack.vercel.app/
 
 Link da API: https://bora-la-api.herokuapp.com/api/
 
