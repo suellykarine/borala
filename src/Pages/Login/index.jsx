@@ -33,7 +33,10 @@ const Login = () => {
 
   const history = useHistory();
 
-  const formSchema = yup.object().shape({});
+  const formSchema = yup.object().shape({
+    username: yup.string().required(),
+    password: yup.string().required()
+  });
   const {
     register,
     handleSubmit,
@@ -43,6 +46,7 @@ const Login = () => {
   });
 
   const handleLogin = (data) => {
+    console.log(data)
     login(data, history);
   };
 
@@ -61,9 +65,9 @@ const Login = () => {
                 Você não é uma empresa <img src={BoraLaLogo} alt="borala"></img>{" "}
                 ? Entre na <Link to="/">Home</Link>
               </p>
-              <Inputs type="text" placeholder="EMAIL" {...register("email")} />
+              <Inputs type="text" placeholder="LOGIN" {...register("username")} />
 
-              {errors.email && <ErrorSpan>{errors.email.message}</ErrorSpan>}
+              {errors.username && <ErrorSpan>{errors.username.message}</ErrorSpan>}
               <InputsP
                 type={visible ? "password" : "text"}
                 placeholder="SENHA"

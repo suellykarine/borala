@@ -16,19 +16,19 @@ export const AuthenticatedProvider = ({ children }) => {
 
   const login = (data, history) => {
     api
-      .post("/login", data)
+      .post("/login/", data)
       .then((response) => {
-        const { accessToken, user } = response.data;
+        console.log(response)
+        const { token } = response.data;
 
-        localStorage.setItem("@borala:token", JSON.stringify(accessToken));
-        localStorage.setItem("@borala:userId", JSON.stringify(user.id));
-
+        localStorage.setItem("@borala:token", JSON.stringify(token));
+        
         setAuthenticated(true);
 
         history.push("/");
         toast.success("Login efetuado com sucesso");
       })
-      .catch((err) => toast.error("email ou senha incorretos"));
+      .catch((err) => toast.error("Login ou senha incorretos"));
   };
 
   return (

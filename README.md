@@ -15,7 +15,7 @@ Links
 
 Link do projeto: https://capstone-m3-grupo3-vilson-nov21-ten.vercel.app/
 
-Link da API: https://capstone-m3-borala.herokuapp.com/
+Link da API: https://bora-la-api.herokuapp.com/api/
 
 Figma: https://www.figma.com/file/ul5WUr069hYHAqc6grs8r3/Untitled?node-id=0%3A1
 

@@ -29,40 +29,46 @@ const NewEvent = ({ isEditting }) => {
   const actualEvent = isEditting && history.location.state;
 
   const formSchema = yup.object().shape({
-    name: yup.string().required("Nome é obrigatório"),
+    title: yup.string().required("Nome é obrigatório"),
     date: yup.string().required("Informe a data do evento"),
-    city: yup.string().required("Nome é obrigatório"),
-    imgUrl: yup.string().required("Insira a url da imagem do evento"),
-    eventPage: yup.string().required("Informe o link para o evento"),
-    state: yup.string().required("Selecione um estado"),
-    category: yup.string().required("Selecione uma categoria"),
-    price: yup.string().required("Informe um valor"),
+    image_url: yup.string().required("Insira a url da imagem do evento"),
+    site_url: yup.string().required("Informe o link para o evento"),
+    price: yup.number().required("Informe um valor"),
+    category: yup.object().shape({
+      name: yup.string().required("Selecione uma categoria"),
+    }),
+    address: yup.object().shape({
+      city: yup.string().required("Nome é obrigatório"),
+      state: yup.string().required("Selecione um estado"),
+    })
+    
   });
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({
-    resolver: yupResolver(formSchema),
-    defaultValues: isEditting && {
-      name: actualEvent.name,
-      date: actualEvent.date,
-      city: actualEvent.city,
-      imgUrl: actualEvent.imgUrl,
-      eventPage: actualEvent.eventPage,
-      state: actualEvent.state,
-      category: actualEvent.category,
-      price: actualEvent.price,
-    },
+    resolver: yupResolver(formSchema)//,
+    // defaultValues: isEditting && {
+    //   title: actualEvent.name,
+    //   date: actualEvent.date,
+    //   city: actualEvent.city,
+    //   image_url: actualEvent.imgUrl,
+    //   site_url: actualEvent.eventPage,
+    //   state: actualEvent.state,
+    //   category: actualEvent.category,
+    //   price: actualEvent.price,
+    // },
   });
 
   const onSubmitFunction = (data) => {
+    console.log("oi meu chapa")
     isEditting && (data.id = actualEvent.id);
     isEditting ? eventUpdate(data, history) : eventRegister(data, history);
   };
 
   if (!localStorage.getItem("@borala:token")) {
-    return <Redirect to="/login" />;
+    return <Redirect to="/login"/>;
   }
 
   return (
@@ -85,10 +91,10 @@ const NewEvent = ({ isEditting }) => {
           <DivForm>
             <Input
               placeholder={"NOME"}
-              register={register("name")}
-              errorMsg={errors.name?.message}
+              register={register("title")}
+              errorMsg={errors.title?.message}
             />
-            {errors.name && <ErrorSpan>{errors.name.message}</ErrorSpan>}
+            {errors.title && <ErrorSpan>{errors.title.message}</ErrorSpan>}
             <Input
               placeholder={"DATA"}
               type={"date"}
@@ -100,25 +106,25 @@ const NewEvent = ({ isEditting }) => {
           <DivForm>
             <Input
               placeholder={"CIDADE"}
-              register={register("city")}
-              errorMsg={errors.city?.message}
+              register={register("address.city")}
+              errorMsg={errors.address?.city?.message}
             />
-            {errors.city && <ErrorSpan>{errors.city.message}</ErrorSpan>}
+            {errors.address?.city && <ErrorSpan>{errors.address.city.message}</ErrorSpan>}
             <Input
               placeholder={"URL DA IMAGEM"}
-              register={register("imgUrl")}
-              errorMsg={errors.imgUrl?.message}
+              register={register("image_url")}
+              errorMsg={errors.image_url?.message}
             />
-            {errors.imgUrl && <ErrorSpan>{errors.imgUrl.message}</ErrorSpan>}
+            {errors.image_url && <ErrorSpan>{errors.image_url.message}</ErrorSpan>}
           </DivForm>
           <DivForm>
             <Input
               placeholder={"SITE DO EVENTO"}
-              register={register("eventPage")}
-              errorMsg={errors.eventPage?.message}
+              register={register("site_url")}
+              errorMsg={errors.site_url?.message}
             />
-            {errors.eventPage && (
-              <ErrorSpan>{errors.eventPage.message}</ErrorSpan>
+            {errors.site_url && (
+              <ErrorSpan>{errors.site_url.message}</ErrorSpan>
             )}
             <Input
               placeholder={"VALOR"}
@@ -129,9 +135,9 @@ const NewEvent = ({ isEditting }) => {
           </DivForm>
           <DivForm>
             <Select
-              {...register("category")}
+              {...register("category.name")}
               defaultValue=""
-              errorMsg={errors.category?.message}
+              errorMsg={errors.category?.name?.message}
             >
               <option value="" disabled>
                 CATEGORIA
@@ -145,8 +151,9 @@ const NewEvent = ({ isEditting }) => {
               <option value="Rodízio">Rodízio</option>
               <option value="Exposição">Exposição</option>
             </Select>
+            {errors.category?.name && <ErrorSpan>{errors.category.name.message}</ErrorSpan>}
             <Select
-              {...register("state")}
+              {...register("address.state")}
               defaultValue=""
               errorMsg={errors.state?.message}
             >
