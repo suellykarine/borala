@@ -14,7 +14,7 @@ Link do projeto: https://boralafullstack.vercel.app/
 
 Link da API: https://bora-la-api.herokuapp.com/api/
 
-Documentção : https://bora-la-api.herokuapp.com/schema/swagger-ui/
+Documentação : https://bora-la-api.herokuapp.com/schema/swagger-ui/
 
 Figma: https://www.figma.com/file/ul5WUr069hYHAqc6grs8r3/Untitled?node-id=0%3A1
 
