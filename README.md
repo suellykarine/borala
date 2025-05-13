@@ -18,20 +18,4 @@ Documentação : https://bora-la-api.herokuapp.com/schema/swagger-ui/
 
 Figma: https://www.figma.com/file/ul5WUr069hYHAqc6grs8r3/Untitled?node-id=0%3A1
 
-Equipe de desenvolvimento Front-End - ReactJs | JS | CSS
 
-- Rafael Francisco Halquema dos Santos - Product Owner
-- William Hans - Scrum Master
-- Pedro Yvo Lucas - Tech Lead
-- Lucas Corrêa - QA
-- Suélly Karine Silva Araujo - QA
-- Vinicius Nunes - QA
-
-Equipe de desenvolvimento Back-End - Python | Django | PostegreSQL
-
-- Eliane Discacciati - Product Owner
-- Suelly Araujo - Scrum Master
-- Ester Táfnis - Tech Lead
-- Renata Juraski - Desenvolvedor
-- Raniery Almeida - Desenvolvedor
-- Acauan Nascimento - Desenvolvedor
